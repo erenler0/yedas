@@ -4,6 +4,13 @@ from __future__ import annotations
 
 import os
 import sys
+import urllib3
+
+# Şirket firewall SSL doğrulamalarından kaynaklanan uyarıları kapatır
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+# Streamlit'in dış internete (streamlit.io) telemetry/istatistik göndermesini engeller
+os.environ["STREAMLIT_BROWSER_GATHER_USAGE_STATS"] = "false"
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 if ROOT not in sys.path:
